@@ -108,11 +108,11 @@ export default class Admin extends React.Component {
       body: formData
     });
   }
-  portJsonData(api, data) {
+  postJsonData(api, data) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let configurations = {
-        method,
+        method: 'POST',
         mode: 'cors',
         headers,
         body: JSON.stringify(data)
@@ -184,7 +184,7 @@ export default class Admin extends React.Component {
           </div>
           <div className="form-group col-md-6">
           <label htmlFor="orgWebsite">Organization Website</label>
-          <input type="text" className="form-control" id="orgWebsite"
+          <input type="url" className="form-control" id="orgWebsite"
                  name="org_website" value={ this.state.org_website }
                  onChange={this.handleChange}></input>
           </div>
@@ -214,7 +214,7 @@ export default class Admin extends React.Component {
           </div>
           <div className="form-group col-md-6">
             <label htmlFor="nameVertical">Vertical position</label>
-            <input type="email" className="form-control" id="nameVertical"
+            <input type="text" className="form-control" id="nameVertical"
                    name="name_vertical_pos" value={ this.state.name_vertical_pos }
                    onChange={this.handleChange}></input>
           </div>
