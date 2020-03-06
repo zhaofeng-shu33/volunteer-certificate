@@ -17,7 +17,7 @@ export default class Admin extends React.Component {
     this.setState( new_json );
   }
   handleImageSelect(e) {
-    this.setState({file: e.target.file});
+    this.setState({file: e.target.files[0]});
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -27,20 +27,20 @@ export default class Admin extends React.Component {
     <div>
       Admin page
       <form onSubmit={this.handleSubmit}>
-      <div class="input-group mb-3">
-      <div class="input-group-prepend"><span class="input-group-text">
+      <div className="input-group mb-3">
+      <div className="input-group-prepend"><span className="input-group-text">
         Token</span></div>
       <input type="password" id="token" className="form-control" name="token"
         value={ this.state.token } onChange={this.handleChange}/>
       </div>
-      <div class="form-group">
-        <label for="template">Template Image</label>
-        <input type="file" class="form-control-file"
+      <div className="form-group">
+        <label htmlFor="template">Template Image</label>
+        <input type="file" className="form-control-file"
                id="template" accept=".jpg"
                onChange={this.handleImageSelect}/>
       </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">
+      <div className="form-group">
+        <button type="submit" className="btn btn-primary">
           Submit
         </button>
       </div>
