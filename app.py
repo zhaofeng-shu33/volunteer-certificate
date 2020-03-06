@@ -156,7 +156,7 @@ def add_data():
     response.data = return_msg(return_json)
     
 @app.route('/api/updateOrgConfig',methods = ['POST', 'OPTIONS'])
-def add_data():
+def update_config():
     if request.method == 'POST':
         message = json.loads(request.get_data(as_text = True))
         token = message["token"]
