@@ -154,6 +154,7 @@ def add_data():
         logging.info(e) 
     return_json = {'code': 0, 'message': '', 'data': None}
     response.data = return_msg(return_json)
+    return response
     
 @app.route('/api/updateOrgConfig',methods = ['POST', 'OPTIONS'])
 def update_config():
