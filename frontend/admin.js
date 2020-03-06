@@ -45,6 +45,56 @@ export default class Admin extends React.Component {
                             alert_message: 'network problem'});
          });
   }
+  submitConfigurations() {
+    const { host } = this.state;
+    let api = `${host}api/updateOrgConfig`;
+    let data = {
+      name: this.state.org_name,
+      website: this.state.org_website,
+      name_horizontal_pos: this.state.name_horizontal_pos,
+      name_vertical_pos: this.state.name_vertical_pos,
+      email: {
+        username: this.state.org_email_username,
+        password: this.state.org_email_password
+      }
+    }
+    this.postJsonData(api, data)
+        .then( res => res.json() )
+        .then( (result) => {
+            const { code, message } = result;
+               this.setState({
+                 alert_message: message,
+                 status: code == 0 ? 'success' : 'fail'
+               });
+         })
+         .catch( (error) => {
+             console.error('Error:', error);
+             this.setState({status: 'fail',
+                            alert_message: 'network problem'});
+         });
+  }
+  submitVolunteerEmails() {
+    const { host } = this.state;
+    let api = `${host}api/addUserData`;
+    let data = {
+      email: this.state.textAreaContent.split('\n'),
+      token: this.state.token
+    }
+    this.postJsonData(api, data)
+        .then( res => res.json() )
+        .then( (result) => {
+            const { code, message } = result;
+               this.setState({
+                 alert_message: message,
+                 status: code == 0 ? 'success' : 'fail'
+               });
+         })
+         .catch( (error) => {
+             console.error('Error:', error);
+             this.setState({status: 'fail',
+                            alert_message: 'network problem'});
+         }); 
+  }
   postFormData(api) {
     let headers = new Headers();
     headers.append('Token', this.state.token);
@@ -58,6 +108,17 @@ export default class Admin extends React.Component {
       body: formData
     });
   }
+  portJsonData(api, data) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let configurations = {
+        method,
+        mode: 'cors',
+        headers,
+        body: JSON.stringify(data)
+    };        
+    return  fetch(api, configurations);
+  }  
   handleChange(e) {
     let new_json = {}
     new_json[e.target.name] = e.target.value;
@@ -109,7 +170,11 @@ export default class Admin extends React.Component {
         </div>
       </form>
 
-      <form>
+      <form onSubmit={
+        (e) => {
+          e.preventDefault();
+          this.submitConfigurations();
+        }}>
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="orgName">Organization Name</label>
@@ -158,7 +223,10 @@ export default class Admin extends React.Component {
             Submit
         </button>        
       </form>
-      <form>
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        this.submitVolunteerEmails();
+      }}>
         <div className="form-group">
           <label htmlFor="email-lists">volunteer email lists</label>
           <textarea className="form-control" rows="3"
