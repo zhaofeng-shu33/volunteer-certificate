@@ -24,6 +24,7 @@ class CertificationContent extends React.Component {
             message: ''
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleResizing = this.handleResizing.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
     }
     getUserInfo(token) {
