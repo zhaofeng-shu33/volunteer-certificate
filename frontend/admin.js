@@ -101,6 +101,52 @@ export default class Admin extends React.Component {
           </button>
         </div>
       </form>
+      <form>
+        <div className="form-row">
+          <div className="form-group col-md-6">
+            <label htmlFor="orgName">Organization Name</label>
+            <input type="text" className="form-control" id="orgName"></input>
+          </div>
+          <div className="form-group col-md-6">
+          <label htmlFor="orgWebsite">Organization Website</label>
+          <input type="text" className="form-control" id="orgWebsite"></input>
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group col-md-6">
+          <label htmlFor="orgEmail">Organization Email</label>
+            <input type="email" className="form-control" id="orgEmail"></input>
+          </div>
+          <div className="form-group col-md-6">
+          <label htmlFor="orgEmailSMTPPass">SMTP password</label>
+            <input type="password" className="form-control" id="orgEmailSMTPPass"></input>
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group col-md-6">
+            <label htmlFor="nameHorizontal">Volunteer name horizontal position</label>
+            <input type="text" className="form-control" id="nameHorizontal"></input>
+          </div>
+          <div className="form-group col-md-6">
+            <label htmlFor="nameVertical">Vertical position</label>
+            <input type="email" className="form-control" id="nameVertical"></input>
+          </div>
+        </div>
+        <button type="submit" className="btn btn-primary">
+            Submit
+        </button>        
+      </form>
+      <form>
+        <div className="form-group">
+          <label htmlFor="email-lists">volunteer email lists</label>
+          <textarea className="form-control" rows="3"></textarea>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </div>
+      </form>
     </div>
     )
   }
