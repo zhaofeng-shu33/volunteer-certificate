@@ -4,10 +4,17 @@ export default class Admin extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      token: "",
     }
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(e) {
+    let new_json = {}
+    new_json[e.target.name] = e.target.value;
+    this.setState( new_json );
   }
 
-    render() {
+  render() {
     return (
     <div>
       Admin page
@@ -15,7 +22,8 @@ export default class Admin extends React.Component {
       <div class="input-group mb-3">
       <div class="input-group-prepend"><span class="input-group-text">
         Token</span></div>
-      <input type="password" id="token" className="form-control" />
+      <input type="password" id="token" className="form-control" name="token"
+        value={ this.state.token } onChange={this.handleChange}/>
       </div>
       <div class="form-group">
         <label for="template">Template Image</label>
