@@ -5,7 +5,9 @@ export default class Admin extends React.Component {
     super(props);
     this.state = {
       token: "",
-      file: null
+      file: null,
+      alert_message: '',
+      status: null
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleImageSelect = this.handleImageSelect.bind(this);
@@ -23,27 +25,42 @@ export default class Admin extends React.Component {
     e.preventDefault();
   }
   render() {
+    let AlertPart;
+    if(this.state.status == 'success') {
+      AlertPart = 
+        (<div className="alert alert-success" role="alert">
+          {this.state.alert_message}
+        </div>);
+    } else if(this.state.status == 'fail') {
+      AlertPart = 
+        (<div className="alert alert-danger" role="alert">
+          {this.state.alert_message}
+        </div>);
+    } else {
+      AlertPart = (<div />);
+    }
     return (
     <div>
       Admin page
       <form onSubmit={this.handleSubmit}>
-      <div className="input-group mb-3">
-      <div className="input-group-prepend"><span className="input-group-text">
-        Token</span></div>
-      <input type="password" id="token" className="form-control" name="token"
-        value={ this.state.token } onChange={this.handleChange}/>
-      </div>
-      <div className="form-group">
-        <label htmlFor="template">Template Image</label>
-        <input type="file" className="form-control-file"
-               id="template" accept=".jpg"
-               onChange={this.handleImageSelect}/>
-      </div>
-      <div className="form-group">
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </div>
+        {AlertPart}
+        <div className="input-group mb-3">
+        <div className="input-group-prepend"><span className="input-group-text">
+          Token</span></div>
+        <input type="password" id="token" className="form-control" name="token"
+          value={ this.state.token } onChange={this.handleChange}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="template">Template Image</label>
+          <input type="file" className="form-control-file"
+                id="template" accept=".jpg"
+                onChange={this.handleImageSelect}/>
+        </div>
+        <div className="form-group">
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </div>
       </form>
     </div>
     )
