@@ -171,13 +171,14 @@ def add_data():
     response.data = return_msg(return_json)
     if result == False:
         return response
-    orgconfig=utils.get_org_config()
-    for domain in message:
-        if message=="token":
-            continue
-        if domain in orgconfig:
-            orgconfig[domain]=message[domain]  #usage: name="some org"&website="website@website.org"&token="[admin token]", update name&website    
-    utils.update_org_config(orgconfig)
+    try:
+        orgconfig=utils.get_org_config()
+        for domain in message:
+            if message=="token":
+                continue
+            if domain in orgconfig:
+                orgconfig[domain]=message[domain]  #usage: name="some org"&website="website@website.org"&token="[admin token]", update name&website    
+        utils.update_org_config(orgconfig)
     except Exception as e:
         logging.info(e) 
     return_json = {'code': 0, 'message': '', 'data': None}
