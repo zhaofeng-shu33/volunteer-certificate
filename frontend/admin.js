@@ -1,9 +1,16 @@
 import React from 'react'
+import { API_URL } from './config-local';
+
 export default class Admin extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
+    let host = API_URL;        
+    if (host[host.length - 1] != '/') {
+        host = host + '/';
+    }
     this.state = {
+      host,
       token: "",
       file: null,
       alert_message: '',
@@ -12,6 +19,37 @@ export default class Admin extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleImageSelect = this.handleImageSelect.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  submitPictureAndParameters() {
+    const { host } = this.state;
+    let api = `${host}api/uploadImage`;
+    this.fetchCertificationApi(api)
+        .then( res => res.json() )
+        .then( (result) => {
+            const { code, message } = result;
+               this.setState({
+                 alert_message: message,
+                 status: code == 0 ? 'success' : 'fail'
+               });
+         })
+         .catch( (error) => {
+             console.error('Error:', error);
+             this.setState({status: 'fail',
+                            alert_message: 'network problem'});
+         });
+  }
+  postFormData(api) {
+    let headers = new Headers();
+    headers.append('Token', this.state.token);
+    headers.append('Content-Type', 'multipart/form-data');
+    const formData = new FormData();
+    formData.append('template', this.state.file);
+    return  fetch(api, {
+      method,
+      mode: 'cors',
+      headers,
+      body: formData
+    });
   }
   handleChange(e) {
     let new_json = {}
@@ -23,6 +61,7 @@ export default class Admin extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
+    submitPictureAndParameters();
   }
   render() {
     let AlertPart;
