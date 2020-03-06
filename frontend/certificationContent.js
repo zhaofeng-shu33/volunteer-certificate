@@ -3,6 +3,8 @@ import React from 'react';
 import { API_URL } from './config-local';
 import { formText } from './data-source';
 
+import './scss-legacy/certificationContent.scss';
+
 class CertificationContent extends React.Component {
     constructor(props) {
         super(props);
