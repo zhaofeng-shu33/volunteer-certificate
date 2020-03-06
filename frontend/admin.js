@@ -23,7 +23,7 @@ export default class Admin extends React.Component {
   submitPictureAndParameters() {
     const { host } = this.state;
     let api = `${host}api/uploadImage`;
-    this.fetchCertificationApi(api)
+    this.postFormData(api)
         .then( res => res.json() )
         .then( (result) => {
             const { code, message } = result;
@@ -45,7 +45,7 @@ export default class Admin extends React.Component {
     const formData = new FormData();
     formData.append('template', this.state.file);
     return  fetch(api, {
-      method,
+      method: 'POST',
       mode: 'cors',
       headers,
       body: formData
@@ -61,7 +61,7 @@ export default class Admin extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    submitPictureAndParameters();
+    this.submitPictureAndParameters();
   }
   render() {
     let AlertPart;
