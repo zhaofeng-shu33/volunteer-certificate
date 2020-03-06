@@ -14,7 +14,14 @@ export default class Admin extends React.Component {
       token: "",
       file: null,
       alert_message: '',
-      status: null
+      status: null,
+      textAreaContent: '',
+      org_name: '',
+      org_website: '',
+      name_horizontal_pos: 0,
+      name_vertical_pos: 0,
+      org_email_username: '',
+      org_email_password: ''
     }
     this.handleChange = this.handleChange.bind(this);
     this.handleImageSelect = this.handleImageSelect.bind(this);
@@ -101,37 +108,50 @@ export default class Admin extends React.Component {
           </button>
         </div>
       </form>
+
       <form>
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="orgName">Organization Name</label>
-            <input type="text" className="form-control" id="orgName"></input>
+            <input type="text" className="form-control" id="orgName"
+                   name="org_name" value={ this.state.org_name }
+                   onChange={this.handleChange}></input>
           </div>
           <div className="form-group col-md-6">
           <label htmlFor="orgWebsite">Organization Website</label>
-          <input type="text" className="form-control" id="orgWebsite"></input>
+          <input type="text" className="form-control" id="orgWebsite"
+                 name="org_website" value={ this.state.org_website }
+                 onChange={this.handleChange}></input>
           </div>
         </div>
 
         <div className="form-row">
           <div className="form-group col-md-6">
           <label htmlFor="orgEmail">Organization Email</label>
-            <input type="email" className="form-control" id="orgEmail"></input>
+            <input type="email" className="form-control" id="orgEmail"
+                   name="org_email_username" value={ this.state.org_email_username }
+                   onChange={this.handleChange}></input>
           </div>
           <div className="form-group col-md-6">
           <label htmlFor="orgEmailSMTPPass">SMTP password</label>
-            <input type="password" className="form-control" id="orgEmailSMTPPass"></input>
+            <input type="password" className="form-control" id="orgEmailSMTPPass"
+                   name="org_email_password" value={ this.state.org_email_password }
+                   onChange={this.handleChange}></input>
           </div>
         </div>
 
         <div className="form-row">
           <div className="form-group col-md-6">
             <label htmlFor="nameHorizontal">Volunteer name horizontal position</label>
-            <input type="text" className="form-control" id="nameHorizontal"></input>
+            <input type="text" className="form-control" id="nameHorizontal"
+                   name="name_horizontal_pos" value={ this.state.name_horizontal_pos }
+                   onChange={this.handleChange}></input>
           </div>
           <div className="form-group col-md-6">
             <label htmlFor="nameVertical">Vertical position</label>
-            <input type="email" className="form-control" id="nameVertical"></input>
+            <input type="email" className="form-control" id="nameVertical"
+                   name="name_vertical_pos" value={ this.state.name_vertical_pos }
+                   onChange={this.handleChange}></input>
           </div>
         </div>
         <button type="submit" className="btn btn-primary">
@@ -141,7 +161,10 @@ export default class Admin extends React.Component {
       <form>
         <div className="form-group">
           <label htmlFor="email-lists">volunteer email lists</label>
-          <textarea className="form-control" rows="3"></textarea>
+          <textarea className="form-control" rows="3"
+              name="textAreaContent"
+              value={ this.state.textAreaContent }
+              onChange={this.handleChange}></textarea>
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
