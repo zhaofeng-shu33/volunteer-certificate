@@ -163,7 +163,7 @@ def add_data():
             pass
         except Exception as e:
             logging.info(e)
-    return_json = {'code': 0, 'message': '', 'data': None}
+    return_json = {'code': 0, 'message': 'update emails successfully', 'data': None}
     response.data = return_msg(return_json)
     return response
     
