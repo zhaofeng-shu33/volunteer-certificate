@@ -203,7 +203,7 @@ def update_config():
 def email_task():
     if request.method == 'POST':
         message = json.loads(request.get_data(as_text = True))
-        action = message['action']
+        action = message.get('action','')
         token = message['token']
         result = confirm_admin_token(token)  # 没有每个人唯一的Key
     response = Response()
