@@ -191,7 +191,7 @@ def update_config():
             referer = referer.replace('admin', 'index')
             message['frontend_url'] = referer
         if message.get('username'): # email admin address
-            message['server_address'] = message.get('username') # email smtp address
+            message['server_address'] = get_smtp_url(message.get('username')) # email smtp address
         orgconfig = utils.get_org_config()
         emailconfig = utils.get_email_config()
         for domain in message:
