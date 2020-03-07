@@ -11,7 +11,7 @@ from jobs import send_notice_email
 from model import insert_people
 from pic_email import write_to_pic
 from app import app
-from util import get_smtp_url
+from utils import get_smtp_url
 
 class UtilTest(unittest.TestCase):
     def test_getSMTP_url(self):
