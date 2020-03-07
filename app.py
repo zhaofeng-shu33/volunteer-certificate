@@ -3,6 +3,7 @@ import io
 import json
 import logging
 import utils
+import re
 
 from flask import Flask , request , render_template , send_file
 from flask import Response
@@ -23,6 +24,12 @@ def return_msg(message):
     if type(message) is dict:
         message = json.dumps(message)
     return message
+
+def check_email(email):
+    regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
+    if re.search(regex, email):
+        retrun True
+    return False
 
 def confirm_token(token): #finish
     db = TinyDB("data.json")
@@ -147,6 +154,9 @@ def add_data():
     if result == False:
         return response
     for email in email_list:
+        if check_email(email) == False:
+            logging.info('invalid email %s' % email)
+            continue
         try:       
             insert_people(email, '')
         except KeyError:
