@@ -77,7 +77,7 @@ export default class Admin extends React.Component {
     const { host } = this.state;
     let api = `${host}api/email`;
     let data = {
-        token,
+        token: this.state.token,
         action: 'send'
     }
     this.postJsonData(api, data)
@@ -130,14 +130,14 @@ export default class Admin extends React.Component {
       body: formData
     });
   }
-  postJsonData(api, data) {
+  postJsonData(api, JsonData) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     let configurations = {
         method: 'POST',
         mode: 'cors',
         headers,
-        body: JSON.stringify(data)
+        body: JSON.stringify(JsonData)
     };        
     return  fetch(api, configurations);
   }  
