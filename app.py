@@ -28,7 +28,7 @@ def return_msg(message):
 def check_email(email):
     regex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
     if re.search(regex, email):
-        retrun True
+        return True
     return False
 
 def confirm_token(token): #finish
