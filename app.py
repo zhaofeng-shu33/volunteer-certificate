@@ -133,7 +133,7 @@ def save_image():
 def add_data():
     if request.method == 'POST':
         message = json.loads(request.get_data(as_text = True))
-        email = message['email']
+        email_list = message['email']
         token = message['token']
         result = confirm_admin_token(token)  # 没有每个人唯一的Key
     response = Response()
@@ -146,12 +146,13 @@ def add_data():
     response.data = return_msg(return_json)
     if result == False:
         return response
-    try:
-        insert_people(email, '')
-    except KeyError:
-        pass
-    except Exception as e:
-        logging.info(e) 
+    for email in email_list:
+        try:       
+            insert_people(email, '')
+        except KeyError:
+            pass
+        except Exception as e:
+            logging.info(e)
     return_json = {'code': 0, 'message': '', 'data': None}
     response.data = return_msg(return_json)
     return response
