@@ -7,7 +7,7 @@ import json
 import yagmail
 from PIL import Image
 
-from jobs import send_notice_email
+from jobs import SendEmailJob
 from model import insert_people
 from pic_email import write_to_pic
 from app import app
@@ -73,7 +73,7 @@ class SubmitUserInfoTests(unittest.TestCase):
 
     def test_notice_email(self):
         with patch("yagmail.SMTP"):
-            send_notice_email()
+            SendEmailJob().start()
 
 class DbOperationTests(unittest.TestCase):
     def test_insert_people(self):
