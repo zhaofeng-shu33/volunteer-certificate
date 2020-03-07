@@ -200,7 +200,7 @@ def update_config():
     return response
 
 @app.route('/api/email',methods = ['POST', 'OPTIONS'])
-def add_data():
+def email_task():
     if request.method == 'POST':
         message = json.loads(request.get_data(as_text = True))
         action = message['action']
