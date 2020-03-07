@@ -233,10 +233,20 @@ export default class Admin extends React.Component {
               name="textAreaContent"
               value={ this.state.textAreaContent }
               onChange={this.handleChange}></textarea>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
+
         </div>
+        <div className="form-row">    
+            <div className="form-group col-md-4">
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </div>
+            <div className="form-group col-md-4">
+              <button className="btn btn-primary">
+                Send Emails
+              </button>
+            </div>
+          </div>        
       </form>
     </div>
     )
