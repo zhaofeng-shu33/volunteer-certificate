@@ -73,6 +73,28 @@ export default class Admin extends React.Component {
                             alert_message: 'network problem'});
          });
   }
+  submitSendEmailRequest() {
+    const { host } = this.state;
+    let api = `${host}api/email`;
+    let data = {
+        token,
+        action: 'send'
+    }
+    this.postJsonData(api, data)
+        .then( res => res.json() )
+        .then( (result) => {
+            const { code, message } = result;
+               this.setState({
+                 alert_message: message,
+                 status: code == 0 ? 'success' : 'fail'
+               });
+         })
+         .catch( (error) => {
+             console.error('Error:', error);
+             this.setState({status: 'fail',
+                            alert_message: 'network problem'});
+         });    
+  }
   submitVolunteerEmails() {
     const { host } = this.state;
     let api = `${host}api/addUserData`;
