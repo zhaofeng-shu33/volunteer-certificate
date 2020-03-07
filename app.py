@@ -12,6 +12,7 @@ from tinydb import Query , TinyDB
 import pic_email as wc
 from model import update_status
 from model import insert_people
+from jobs import SendEmailJob
 
 app = Flask(__name__)
 send_email_job = SendEmailJob()
